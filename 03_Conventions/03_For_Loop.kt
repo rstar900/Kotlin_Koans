@@ -16,10 +16,7 @@ class DateRange(val start: MyDate, val end: MyDate): Iterable<MyDate> {
                 // Check if the current date is valid
                 // and within bounds
 
-                return currentDate.year > 0 &&
-                        currentDate.month > 0 &&
-                        currentDate.dayOfMonth > 0 &&
-                        currentDate <= end
+                return currentDate <= end
 
             }
 
@@ -30,6 +27,8 @@ class DateRange(val start: MyDate, val end: MyDate): Iterable<MyDate> {
                 val oldDate = currentDate
                 if (this.hasNext()){
                     currentDate = currentDate.followingDate()
+                } else {
+                    throw NoSuchElementException()
                 }
                 return oldDate
             }
